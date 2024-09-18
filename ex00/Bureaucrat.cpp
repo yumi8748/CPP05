@@ -4,15 +4,13 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Bureaucrat::Bureaucrat()
+Bureaucrat::Bureaucrat(const std::string &name, int grade): name(name), grade(grade)
 {
-	this->name = "undefined";
-	this->grade = 0; //?
+	check_grade();
 }
 
-Bureaucrat::Bureaucrat( const Bureaucrat & src )
+Bureaucrat::Bureaucrat( const Bureaucrat & other ): name(other.name), grade(other.grade)
 {
-	
 }
 
 
@@ -29,18 +27,18 @@ Bureaucrat::~Bureaucrat()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & rhs )
+Bureaucrat &				Bureaucrat::operator=( Bureaucrat const & other )
 {
-	//if ( this != &rhs )
-	//{
-		//this->_value = rhs.getValue();
-	//}
+	if ( this != &other )
+	{
+		this->grade = other.getGrade();
+	}
 	return *this;
 }
 
 std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 {
-	//o << "Value = " << i.getValue();
+	o << i.getName() <<", bureaucrat grade " << i.getGrade() << "." << std::endl;
 	return o;
 }
 
@@ -48,32 +46,47 @@ std::ostream &			operator<<( std::ostream & o, Bureaucrat const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-const std::string	getName(void) const
+void	Bureaucrat::increment_grade(void)
 {
-
+	Bureaucrat::grade--;
+	check_grade();
 }
 
-int	getGrade(void) const
+void	Bureaucrat::decrement_grade(void)
 {
-
+	Bureaucrat::grade++;
+	check_grade();
 }
 
-void	increment_grade(void)
+void	Bureaucrat::check_grade() const
 {
-
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
 }
 
-void	decrement_grade(void)
+const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-
+	return "Grade too high!";
 }
 
-GradeTooHighException: throw()
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade too low!";
+}
 
-GradeTooLowException: throw()
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
+const std::string	Bureaucrat::getName(void) const
+{
+	return name;
+}
 
+int	Bureaucrat::getGrade(void) const
+{
+	return grade;
+}
 
 /* ************************************************************************** */
