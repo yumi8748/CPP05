@@ -1,10 +1,11 @@
 #include "ShrubberyCreationForm.hpp"
+#include "AForm.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-ShrubberyCreationForm::ShrubberyCreationForm()
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("Shrub", 145, 137), target("Undefined")
 {
 }
 
@@ -45,8 +46,9 @@ std::ostream &			operator<<( std::ostream & o, ShrubberyCreationForm const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
-
+ShrubberyCreationForm::ShrubberyCreationForm( std::string _target ): AForm("Shrub", 145, 137), target(_target)
+{
+}
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

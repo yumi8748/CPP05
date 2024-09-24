@@ -1,10 +1,10 @@
 #include "RobotomyRequestForm.hpp"
-
+#include "AForm.hpp"
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-RobotomyRequestForm::RobotomyRequestForm()
+RobotomyRequestForm::RobotomyRequestForm(): AForm("Robot", 72, 45), target("Undefined")
 {
 }
 
@@ -45,8 +45,9 @@ std::ostream &			operator<<( std::ostream & o, RobotomyRequestForm const & i )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
-
+RobotomyRequestForm::RobotomyRequestForm( std::string _target ): AForm("Robot", 72, 45), target(_target)
+{
+}
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */

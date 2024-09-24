@@ -1,10 +1,10 @@
 #include "PresidentialPardonForm.hpp"
-
+#include "AForm.hpp"
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-PresidentialPardonForm::PresidentialPardonForm()
+PresidentialPardonForm::PresidentialPardonForm(): AForm("President", 25, 5), target("Undefined")
 {
 }
 
@@ -45,8 +45,9 @@ std::ostream &			operator<<( std::ostream & o, PresidentialPardonForm const & i 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
-
+PresidentialPardonForm::PresidentialPardonForm( std::string _target ): AForm("President", 25, 5), target(_target)
+{
+}
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
