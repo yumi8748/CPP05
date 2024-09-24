@@ -6,8 +6,8 @@ int main()
     {
     /* do some stuff with bureaucrats */
 		Bureaucrat b1("Amy", 1);
-		std::cout << b1;
 		b1.decrement_grade(); 
+		std::cout << b1;
     }
     catch (std::exception & e)
     {
@@ -29,8 +29,8 @@ int main()
     {
     /* do some stuff with bureaucrats */
 		Bureaucrat b3("Celine", 1);
-		std::cout << b3;
         b3.increment_grade(); 
+		std::cout << b3;
     }
     catch (std::exception & e)
     {
