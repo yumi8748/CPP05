@@ -36,11 +36,37 @@ Intern &				Intern::operator=( Intern const & rhs )
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
+AForm	*Intern::newShrubbery(std::string target)
+{
+	return (new ShrubberyCreationForm(target));
+}
+
+AForm	*Intern::newRobotomy(std::string target)
+{
+	return (new RobotomyRequestForm(target));
+}
+
+AForm	*Intern::newPresidential(std::string target)
+{
+	return (new PresidentialPardonForm(target));
+}
+
 AForm	*Intern::makeForm(std::string form, std::string target)
 {
-	std::string StringList[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	//continue
-	std::cout << "Intern creates " << form << std::endl;
+	std::string FormList[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	AForm* (Intern::*CreateForm[3])(std::string) = {&Intern::newShrubbery, &Intern::newRobotomy, &Intern::newPresidential};
+	
+	for (int i = 0; i < 3; i++)
+	{
+		if (form == FormList[i])
+		{
+			std::cout << "Intern creates " << form << std::endl;
+			return ((this->*CreateForm[i])(target));
+		}
+	}
+	std::cout << "Form \"" << form << "\" doesn't exist!" << std::endl;
+	return (NULL);
 }
 
 /*
